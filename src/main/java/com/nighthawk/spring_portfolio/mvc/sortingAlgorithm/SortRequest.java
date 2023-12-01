@@ -1,4 +1,4 @@
-package com.nighthawk.spring_portfolio.mvc.palette;
+package com.nighthawk.spring_portfolio.mvc.sortingAlgorithm;
 
 import java.util.HashMap;
 /*
@@ -15,11 +15,13 @@ public class SortRequest {
     private HashMap<Integer, Integer[]> rgbData;
     private Integer color;
     private String sortType;
+    private boolean big;
 
-    public SortRequest(Integer id, HashMap<Integer, Integer[]> rgbData, Integer color, String sortType) {
+    public SortRequest(Integer id, HashMap<Integer, Integer[]> rgbData, Integer color, String sortType, boolean big) {
         this.rgbData = rgbData; // change to hashmap
         this.color = color; // represented by an Integer: 0 = red, 1 = green, 2 = blue
-        this.sortType = sortType;
+        this.sortType = sortType; // "bubble", "selection", "insertion", "merge"
+        this.big = big; // true if 5000 are being sorted, false otherwise
     }
 
     public void setRgbData(HashMap<Integer, Integer[]> rgbData) {
@@ -34,6 +36,10 @@ public class SortRequest {
         this.sortType = sortType;
     }
 
+    public void setBig(boolean big) {
+        this.big = big;
+    }
+
     public HashMap<Integer, Integer[]> getRgbData() {
         return this.rgbData;
     }
@@ -44,5 +50,9 @@ public class SortRequest {
 
     public String getSortType() {
         return this.sortType;
+    }
+
+    public boolean getBig() {
+        return this.big;
     }
 }
