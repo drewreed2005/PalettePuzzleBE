@@ -1,23 +1,14 @@
 package com.nighthawk.spring_portfolio.mvc.sortingAlgorithm;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.nighthawk.spring_portfolio.mvc.sortingAlgorithm.SortingAlgorithm;
-import com.nighthawk.spring_portfolio.mvc.sortingAlgorithm.SortRequest;
+// import com.nighthawk.spring_portfolio.mvc.sortingAlgorithm.SortingAlgorithm;
+// import com.nighthawk.spring_portfolio.mvc.sortingAlgorithm.SortRequest;
 
 @RestController
 @RequestMapping("/api/sortingAlgorithm") // Sets the path to our dijkstra algorithm
