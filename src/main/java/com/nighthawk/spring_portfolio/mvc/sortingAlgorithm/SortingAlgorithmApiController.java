@@ -23,7 +23,6 @@ public class SortingAlgorithmApiController {
         System.out.println("Received request");
         String chosenSort = request.getSortType();
         HashMap<Integer, Integer[]> data = request.getRgbData();
-        System.out.println(data);
         Integer chosenColor = request.getColor();
         boolean big = request.getBig();
         HashMap<String, Object> returnValue = new HashMap<String, Object>();
@@ -56,11 +55,11 @@ public class SortingAlgorithmApiController {
             SortingAlgorithm bigMergeSort = new MergeSort();
             SortingAlgorithm[] algorithmArray = {bigBubbleSort, bigSelectionSort, bigInsertionSort, bigMergeSort};
             long[] averageTimes = {0, 0, 0, 0}; // indexes: 0 = bubble, 1 = selection, 2 = insertion, 3 = merge
-            // 100 sorts
-            for (int i = 0; i < 100; i++) {
+            // 5 sorts
+            for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 4; j++) {
                     algorithmArray[j].sort(data, chosenColor);
-                    averageTimes[j] += (algorithmArray[j].getExecutionTime() * 0.01);
+                    averageTimes[j] += (algorithmArray[j].getExecutionTime() * 0.1);
                 }
             }
             ArrayList<HashMap<String, Long>> analysisArray = new ArrayList<>();
