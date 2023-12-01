@@ -20,8 +20,10 @@ public class SortingAlgorithmApiController {
     @PostMapping("/")
     @ResponseBody
     public ResponseEntity<Object> sortColors(@RequestBody SortRequest request) {
+        System.out.println("Received request");
         String chosenSort = request.getSortType();
         HashMap<Integer, Integer[]> data = request.getRgbData();
+        System.out.println(data);
         Integer chosenColor = request.getColor();
         boolean big = request.getBig();
         HashMap<String, Object> returnValue = new HashMap<String, Object>();
@@ -74,7 +76,7 @@ public class SortingAlgorithmApiController {
             returnValue.put("merge", analysisArray.get(3));
         }
         returnValue.put("steps", steps);
-
+        System.out.println("finished process");
         return new ResponseEntity<>(returnValue, HttpStatus.OK);
     }
 }
