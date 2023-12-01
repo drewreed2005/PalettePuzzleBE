@@ -26,6 +26,8 @@ public class SortingAlgorithm {
     }
 
     public Integer[][] sort(HashMap<Integer, Integer[]> colorValues, int chosenColor) {
+        this.swaps = 0;
+        this.comparisons = 0;
         long startTime = System.nanoTime();
         Integer[][] steps = performSort(colorValues, chosenColor);
         long endTime = System.nanoTime();
