@@ -4,46 +4,44 @@ public class MatrixExponentiation extends Fibonacci {
     @Override
     protected long performCalculation(Integer n) {
 		this.name = "Matrix Exponentiation";
-        return findTheNthTerm(n);
-    }
+		
+        // base case
+        if (n == 0) {
+			return 0;
+		}
+		// creating the base matrix
+		long[][] baseMatrix = {{1, 1}, {1, 0}};
+		// initializing result matrix to the identity matrix
+		long[][] resultMatrix = {{1, 0}, {0, 1}};
 
-    private void multiply(int a[][], int b[][]) {
-		int mul[][] = new int[3][3];
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				mul[i][j] = 0;
-				for (int k = 0; k < 3; k++)
-					mul[i][j] += a[i][k]
-								* b[k][j];
+		// matrix exponentiation
+		while (n > 0) {
+			if (n % 2 == 1) {
+				resultMatrix = multiplyMatrices(resultMatrix, baseMatrix);
+			}
+			baseMatrix = multiplyMatrices(baseMatrix, baseMatrix);
+			n /= 2;
+		}
+
+		// result is in the top right corner of the final matrix
+		return resultMatrix[0][1];
+	}
+
+	// method to multiply two matrices
+	private long[][] multiplyMatrices(long[][] matrix1, long[][] matrix2) {
+		int rows1 = matrix1.length;
+		int cols1 = matrix1[0].length;
+		int cols2 = matrix2[0].length;
+
+		long[][] result = new long[rows1][cols2];
+		for (int i = 0; i < rows1; i++) {
+			for (int j = 0; j < cols2; j++) {
+				for (int k = 0; k < cols1; k++) {
+					result[i][j] += matrix1[i][k] * matrix2[k][j];
+				}
 			}
 		}
 
-		for (int i=0; i<3; i++)
-			for (int j=0; j<3; j++)
-				// updating matrix
-				a[i][j] = mul[i][j]; 
-	}
-	
-	// Function to compute F raise to power n-2
-	private int power(int F[][], int n) {
-		int M[][] = {{1, 1, 1}, {1, 0, 0},
-							{0, 1, 0}};
-	
-		if (n == 1)
-			return F[0][0] + F[0][1];
-	
-		power(F, n / 2);
-		multiply(F, F);
-	
-		if (n%2 != 0)
-			multiply(F, M);
-	
-		// Multiply it with initial values 
-		return F[0][0] + F[0][1] ;
-	}
-
-    private long findTheNthTerm(Integer n) {
-        int F[][] = {{1, 1, 1}, {1, 0, 0}, {0, 1, 0}};
-        return power(F, n-2);
+		return result;
     }
 }
