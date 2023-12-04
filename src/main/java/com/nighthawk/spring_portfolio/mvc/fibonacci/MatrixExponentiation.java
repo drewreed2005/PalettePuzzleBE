@@ -3,6 +3,7 @@ package com.nighthawk.spring_portfolio.mvc.fibonacci;
 public class MatrixExponentiation extends Fibonacci {
     @Override
     protected long performCalculation(Integer n) {
+		this.name = "Matrix Exponentiation";
         return findTheNthTerm(n);
     }
 

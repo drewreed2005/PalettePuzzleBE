@@ -19,13 +19,16 @@ public class FibonacciApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getFibonacci(@PathVariable Integer id) {
-        HashMap<String, Object> returnValue = new HashMap<String, Object>();
+        HashMap<String, HashMap<String, Object>> returnValue = new HashMap<String, HashMap<String, Object>>();
         GoldenRatio goldenRatio = new GoldenRatio();
         MatrixExponentiation matrixExponentiation = new MatrixExponentiation();
-        returnValue.put("result", goldenRatio.calculate(id));
-        returnValue.put("golden_Ratio", goldenRatio.getExecutionTime());
-        matrixExponentiation.calculate(id);
-        returnValue.put("matrix_Exponentiation", matrixExponentiation.getExecutionTime());
+        Fibonacci[] methodArray = {goldenRatio, matrixExponentiation};
+        for (Fibonacci method : methodArray) {
+            long result = method.calculate(id);
+            returnValue.put(method.getName(), new HashMap<String, Object>());
+            returnValue.get(method.getName()).put("result", result);
+            returnValue.get(method.getName()).put("executionTime", method.getExecutionTime());
+        }
         return new ResponseEntity<>(returnValue, HttpStatus.OK);   
     }
 }
