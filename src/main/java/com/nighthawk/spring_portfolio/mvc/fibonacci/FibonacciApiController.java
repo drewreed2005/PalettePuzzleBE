@@ -24,7 +24,8 @@ public class FibonacciApiController {
         MatrixExponentiation matrixExponentiation = new MatrixExponentiation();
         ForLoop forLoop = new ForLoop();
         WhileLoop whileLoop = new WhileLoop();
-        Fibonacci[] methodArray = {goldenRatio, matrixExponentiation, forLoop, whileLoop};
+        StreamLoop streamLoop = new StreamLoop();
+        Fibonacci[] methodArray = {goldenRatio, matrixExponentiation, forLoop, whileLoop, streamLoop};
         for (Fibonacci method : methodArray) {
             long result = method.calculate(id);
             returnValue.put(method.getName(), new HashMap<String, Object>());
