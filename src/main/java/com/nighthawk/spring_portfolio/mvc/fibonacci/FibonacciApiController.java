@@ -1,6 +1,5 @@
 package com.nighthawk.spring_portfolio.mvc.fibonacci;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.http.HttpStatus;
@@ -24,8 +23,9 @@ public class FibonacciApiController {
         MatrixExponentiation matrixExponentiation = new MatrixExponentiation();
         ForLoop forLoop = new ForLoop();
         WhileLoop whileLoop = new WhileLoop();
+        Recursion recursion = new Recursion();
         StreamLoop streamLoop = new StreamLoop();
-        Fibonacci[] methodArray = {goldenRatio, matrixExponentiation, forLoop, whileLoop, streamLoop};
+        Fibonacci[] methodArray = {goldenRatio, matrixExponentiation, forLoop, whileLoop, recursion, streamLoop};
         for (Fibonacci method : methodArray) {
             long result = method.calculate(id);
             returnValue.put(method.getName(), new HashMap<String, Object>());
